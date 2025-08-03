@@ -86,7 +86,24 @@ curl --location 'http://localhost:8080/task-mgmt/fetch-by-date/v2' \
 ```
 */
 
+Change the priority
+API- http://localhost:8080/task-mgmt/update-priority
+METHOD - PATCH
+--data {
+   "task_id": 5,
+   "new_priority": "LOW"
+}
 
+Get list of task with ceratin priority
+API- http://localhost:8080/task-mgmt/priority/{PRIORITY}
+
+Post comment and maintain and track history of tasks 
+API for adding comments - http://localhost:8080/task-mgmt/tasks/{id}/comments
+data {
+  "commenter_id": 101,
+  "comment_text": "Please prioritize this task for today."
+}
+API for detailed task history -  http://localhost:8080/task-mgmt/tasks/5{id}details
 
 
 // 
