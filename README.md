@@ -86,23 +86,45 @@ curl --location 'http://localhost:8080/task-mgmt/fetch-by-date/v2' \
 ```
 */
 
-Change the priority
+### Change the priority
 API- http://localhost:8080/task-mgmt/update-priority
 METHOD - PATCH
 --data {
    "task_id": 5,
    "new_priority": "LOW"
 }
+curl --location --request PATCH 'http://localhost:8080/task-mgmt/update-priority' \
+--header 'Content-Type: application/json' \
+--data '{
+   "task_id": 5,
+   "new_priority": "LOW"
+}'
 
-Get list of task with ceratin priority
+### Get list of task with ceratin priority
+Get list of tasks with certain priority
+This fetches all tasks with priority HIGH
 API- http://localhost:8080/task-mgmt/priority/{PRIORITY}
+curl --location 'http://localhost:8080/task-mgmt/priority/HIGH'
 
-Post comment and maintain and track history of tasks 
+
+### Post comment and maintain and track history of tasks 
+Post a comment to a task
+This adds a comment to task ID 5 by commenter ID 101
+curl --location --request POST 'http://localhost:8080/task-mgmt/tasks/5/comments' \
+--header 'Content-Type: application/json' \
+--data '{
+   "commenter_id": 101,
+   "comment_text": "Please prioritize this task for today."
+}'
+
 API for adding comments - http://localhost:8080/task-mgmt/tasks/{id}/comments
 data {
   "commenter_id": 101,
   "comment_text": "Please prioritize this task for today."
 }
+
+### Get detailed task history
+curl --location 'http://localhost:8080/task-mgmt/tasks/5/details'
 API for detailed task history -  http://localhost:8080/task-mgmt/tasks/5{id}details
 
 
