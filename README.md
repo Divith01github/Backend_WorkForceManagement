@@ -95,55 +95,37 @@ This API allows managing tasks including updating priority, filtering by priorit
 ### 🔄 Change Task Priority
 
 Update the priority of a task.
-
-PATCH http://localhost:8080/task-mgmt/update-priority
-
+```bash
 curl --location --request PATCH 'http://localhost:8080/task-mgmt/update-priority' \
 --header 'Content-Type: application/json' \
 --data '{
    "task_id": 5,
    "new_priority": "LOW"
 }'
-
----
+```
 
 ### 📋 Get Tasks by Priority
 
 Fetch all tasks with a specific priority.
-
-GET http://localhost:8080/task-mgmt/priority/{PRIORITY}
-
-Example for priority = HIGH:
-
+```bash
 curl --location 'http://localhost:8080/task-mgmt/priority/HIGH'
-
----
-
+```
 ### 💬 Post Comment to a Task
 
 Add a comment to a task.
-
-POST http://localhost:8080/task-mgmt/tasks/{id}/comments
-
-Example for task ID = 5:
-
+```bash
 curl --location --request POST 'http://localhost:8080/task-mgmt/tasks/5/comments' \
 --header 'Content-Type: application/json' \
 --data '{
    "commenter_id": 101,
    "comment_text": "Please prioritize this task for today."
 }'
-
----
+```
 
 ### 📜 Get Detailed Task History
 
 Fetch complete details of a task, including comments and change history.
-
-GET http://localhost:8080/task-mgmt/tasks/{id}/details
-
-Example for task ID = 5:
-
+```bash
 curl --location 'http://localhost:8080/task-mgmt/tasks/5/details'
-iled task history -  http://localhost:8080/task-mgmt/tasks/5{id}details
+```
 
