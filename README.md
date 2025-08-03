@@ -86,13 +86,18 @@ curl --location 'http://localhost:8080/task-mgmt/fetch-by-date/v2' \
 ```
 */
 
-### Change the priority
-API- http://localhost:8080/task-mgmt/update-priority
-METHOD - PATCH
---data {
-   "task_id": 5,
-   "new_priority": "LOW"
-}
+# Task Management API
+
+This API allows managing tasks including updating priority, filtering by priority, commenting, and viewing task history.
+
+---
+
+### 🔄 Change Task Priority
+
+Update the priority of a task.
+
+PATCH http://localhost:8080/task-mgmt/update-priority
+
 curl --location --request PATCH 'http://localhost:8080/task-mgmt/update-priority' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -100,16 +105,28 @@ curl --location --request PATCH 'http://localhost:8080/task-mgmt/update-priority
    "new_priority": "LOW"
 }'
 
-### Get list of task with ceratin priority
-Get list of tasks with certain priority
-This fetches all tasks with priority HIGH
-API- http://localhost:8080/task-mgmt/priority/{PRIORITY}
+---
+
+### 📋 Get Tasks by Priority
+
+Fetch all tasks with a specific priority.
+
+GET http://localhost:8080/task-mgmt/priority/{PRIORITY}
+
+Example for priority = HIGH:
+
 curl --location 'http://localhost:8080/task-mgmt/priority/HIGH'
 
+---
 
-### Post comment and maintain and track history of tasks 
-Post a comment to a task
-This adds a comment to task ID 5 by commenter ID 101
+### 💬 Post Comment to a Task
+
+Add a comment to a task.
+
+POST http://localhost:8080/task-mgmt/tasks/{id}/comments
+
+Example for task ID = 5:
+
 curl --location --request POST 'http://localhost:8080/task-mgmt/tasks/5/comments' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -117,15 +134,16 @@ curl --location --request POST 'http://localhost:8080/task-mgmt/tasks/5/comments
    "comment_text": "Please prioritize this task for today."
 }'
 
-API for adding comments - http://localhost:8080/task-mgmt/tasks/{id}/comments
-data {
-  "commenter_id": 101,
-  "comment_text": "Please prioritize this task for today."
-}
+---
 
-### Get detailed task history
+### 📜 Get Detailed Task History
+
+Fetch complete details of a task, including comments and change history.
+
+GET http://localhost:8080/task-mgmt/tasks/{id}/details
+
+Example for task ID = 5:
+
 curl --location 'http://localhost:8080/task-mgmt/tasks/5/details'
-API for detailed task history -  http://localhost:8080/task-mgmt/tasks/5{id}details
+iled task history -  http://localhost:8080/task-mgmt/tasks/5{id}details
 
-
-// 
